@@ -1,15 +1,17 @@
-# app.py
+import os
 import gradio as gr
 
+
 def saludar(nombre):
-    return f"Hola, {nombre} 👋"
+    return f"Hola {nombre}"
+
 
 demo = gr.Interface(
     fn=saludar,
-    inputs="text",
-    outputs="text",
-    title="Mi primera app en Hugging Face Spaces"
+    inputs="textbox",
+    outputs="textbox"
 )
+
 
 if __name__ == "__main__":
     demo.launch(
