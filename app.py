@@ -1,5 +1,5 @@
-import os
 import gradio as gr
+from fastapi import FastAPI
 
 
 def saludar(nombre):
@@ -9,12 +9,15 @@ def saludar(nombre):
 demo = gr.Interface(
     fn=saludar,
     inputs="textbox",
-    outputs="textbox"
+    outputs="textbox",
+    title="Mi app Gradio"
 )
 
 
-if __name__ == "__main__":
-    demo.launch(
-        server_name="0.0.0.0",
-        server_port=int(os.environ.get("PORT", 7860))
-    )
+app = FastAPI()
+
+app = gr.mount_gradio_app(
+    app,
+    demo,
+    path="/"
+)
